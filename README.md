@@ -18,4 +18,4 @@ To use this page, you would click the start button. Five questions would appear 
 
 HTML, CSS, and JavaScript code were originally used by [Achigas](https://github.com/Achigas/CodeQuiz-Challenge4) but were polished by me with changes made to the colors, the questions, button and font sizes, and functions to better fit the requirements of the assignment.
 
-https://github.com/MrMessyFace/04-coding-quiz-challenge
+https://mrmessyface.github.io/coding-quiz-challenge/
