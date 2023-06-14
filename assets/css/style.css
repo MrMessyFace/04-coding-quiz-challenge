@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
 }
-  
+
 :root {
     --primary: white;
     --secondary: green;
@@ -36,7 +36,7 @@ header h4 {
     font-size: 2.0rem;
     display: inline;
 }
-  
+
 .timer {
     font-size: 2.0rem;
     color: var(--primary);
@@ -68,8 +68,9 @@ p {
     align-items: center;
     text-align: center;
 }
-  
-.start h1, .start p {
+
+.start h1,
+.start p {
     text-align: center;
 }
 
@@ -80,12 +81,13 @@ p {
     margin: auto;
 }
 
-.end h1, .end p {
+.end h1,
+.end p {
     text-align: left;
 }
 
 .end input {
-    outline: thick; 
+    outline: thick;
     border-width: 1px;
     padding: 5px;
     width: 35%;

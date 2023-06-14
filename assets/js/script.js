@@ -34,30 +34,35 @@ var arrayShuffledQuestions;
 var questionIndex = 0;
 
 var questions = [
-    { q: 'Commonly used data types DO NOT include:', 
-        a: 'alerts', 
-        choices: [{choice: 'strings'}, {choice: 'booleans'}, {choice: 'alerts'}, {choice: 'numbers'}]
+    {
+        q: 'Commonly used data types DO NOT include:',
+        a: 'alerts',
+        choices: [{ choice: 'strings' }, { choice: 'booleans' }, { choice: 'alerts' }, { choice: 'numbers' }]
     },
-    { q: 'The condition in an if / else statement is enclosed within _____.', 
-        a: 'curly brackets', 
-        choices: [{choice: 'quotes'}, {choice: 'curly brackets'}, {choice: 'parentheses'}, {choice: 'square brackets'}]
+    {
+        q: 'The condition in an if / else statement is enclosed within _____.',
+        a: 'curly brackets',
+        choices: [{ choice: 'quotes' }, { choice: 'curly brackets' }, { choice: 'parentheses' }, { choice: 'square brackets' }]
     },
-    { q: 'Arrays in JavaScript can be used to store _____.', 
-        a: 'all of the above', 
-        choices: [{choice: 'numbers and strings'}, {choice: 'other arrays'}, {choice: 'booleans'}, {choice: 'all of the above'}]
+    {
+        q: 'Arrays in JavaScript can be used to store _____.',
+        a: 'all of the above',
+        choices: [{ choice: 'numbers and strings' }, { choice: 'other arrays' }, { choice: 'booleans' }, { choice: 'all of the above' }]
     },
-    { q: 'String values must be enclosed within _____ when being assigned to variables.', 
-        a: 'quotes', 
-        choices: [{choice: 'commas'}, {choice: 'curly brackets'}, {choice: 'quotes'}, {choice: 'parentheses'}]
+    {
+        q: 'String values must be enclosed within _____ when being assigned to variables.',
+        a: 'quotes',
+        choices: [{ choice: 'commas' }, { choice: 'curly brackets' }, { choice: 'quotes' }, { choice: 'parentheses' }]
     },
-    { q: 'A very useful tool used during development and debugging for printing content to the debugger is:', 
-        a: 'console.log', 
-        choices: [{choice: 'JavaScript'}, {choice: 'terminal / bash'}, {choice: 'for loops'}, {choice: 'console.log'}]
+    {
+        q: 'A very useful tool used during development and debugging for printing content to the debugger is:',
+        a: 'console.log',
+        choices: [{ choice: 'JavaScript' }, { choice: 'terminal / bash' }, { choice: 'for loops' }, { choice: 'console.log' }]
     },
 ];
-      
+
 // Starting Function
-var renderStartPage = function() {
+var renderStartPage = function () {
     containerHighScoresEl.classList.add("hide");
     containerHighScoresEl.classList.remove("show");
     containerStartEl.classList.remove("hide");
@@ -80,17 +85,17 @@ var renderStartPage = function() {
 };
 
 // Timer Function
-var setTime = function() {
+var setTime = function () {
     timeLeft = 50;
 
-    var timerCheck = setInterval(function() {
+    var timerCheck = setInterval(function () {
         timerEl.innerText = timeLeft;
         timeLeft--;
 
         if (gameover) {
             clearInterval(timerCheck);
         };
-       
+
         if (timeLeft < 0) {
             showScore();
             timerEl.innerText = 0;
@@ -100,7 +105,7 @@ var setTime = function() {
 };
 
 // Start Quiz Function
-var startGame = function() {
+var startGame = function () {
     containerStartEl.classList.add('hide');
     containerStartEl.classList.remove('show');
     containerQuestionEl.classList.remove('hide');
@@ -109,22 +114,22 @@ var startGame = function() {
     setTime();
     setQuestion();
 };
-    
+
 // Next Question Function
-var setQuestion = function() {
+var setQuestion = function () {
     resetAnswers();
     displayQuestion(arrayShuffledQuestions[questionIndex]);
 };
 
 // Clear Answers Function
-var resetAnswers = function() {
+var resetAnswers = function () {
     while (answerButtonsEl.firstChild) {
         answerButtonsEl.removeChild(answerButtonsEl.firstChild);
     };
 };
 
 // Display Question Function
-var displayQuestion = function(index) {
+var displayQuestion = function (index) {
     questionEl.innerText = index.q
     for (var i = 0; i < index.choices.length; i++) {
         var answerButton = document.createElement('button');
@@ -137,7 +142,7 @@ var displayQuestion = function(index) {
 };
 
 // Display if Correct
-var answerCorrect = function() {
+var answerCorrect = function () {
     if (correctEl.className = "hide") {
         correctEl.classList.remove("hide");
         correctEl.classList.add("banner");
@@ -147,7 +152,7 @@ var answerCorrect = function() {
 };
 
 // Display if Wrong
-var answerWrong = function() {
+var answerWrong = function () {
     if (wrongEl.className = "hide") {
         wrongEl.classList.remove("hide");
         wrongEl.classList.add("banner");
@@ -157,9 +162,9 @@ var answerWrong = function() {
 };
 
 // Check if Answer is Correct or Wrong
-var answerCheck = function(event) {
+var answerCheck = function (event) {
     var selectedAnswer = event.target;
-    if (arrayShuffledQuestions[questionIndex].a === selectedAnswer.innerText){
+    if (arrayShuffledQuestions[questionIndex].a === selectedAnswer.innerText) {
         answerCorrect();
         timeLeft = timeLeft + 10;
     } else {
@@ -169,7 +174,7 @@ var answerCheck = function(event) {
 
     // Check if There are More Questions
     questionIndex++;
-    if  (arrayShuffledQuestions.length > questionIndex) {
+    if (arrayShuffledQuestions.length > questionIndex) {
         setQuestion();
     } else {
         gameover = "true";
@@ -189,14 +194,14 @@ var showScore = function () {
 };
 
 // Set High Score Function
-var createHighScore = function(event) { 
+var createHighScore = function (event) {
     event.preventDefault();
     var initials = document.querySelector("#initials").value;
     if (!initials) {
         alert("Enter your intials!");
         return;
     };
-    
+
     formInitials.reset();
 
     var highScore = {
@@ -206,7 +211,7 @@ var createHighScore = function(event) {
 
     // Push and Sort High Scores
     highScores.push(highScore);
-    highScores.sort((a, b) => {return b.score-a.score});
+    highScores.sort((a, b) => { return b.score - a.score });
 
     // Clear High Score List
     while (listHighScoreEl.firstChild) {
@@ -226,20 +231,20 @@ var createHighScore = function(event) {
 };
 
 // Save High Score Function
-var saveHighScore = function() {
+var saveHighScore = function () {
     localStorage.setItem("HighScores", JSON.stringify(highScores));
 };
 
 // Load High Score List Function
-var loadHighScore = function() {
+var loadHighScore = function () {
     var loadedHighScores = localStorage.getItem("HighScores");
     if (!loadedHighScores) {
         return false;
     };
 
     loadedHighScores = JSON.parse(loadedHighScores);
-    loadedHighScores.sort((a, b) => {return b.score-a.score});
- 
+    loadedHighScores.sort((a, b) => { return b.score - a.score });
+
     for (var i = 0; i < loadedHighScores.length; i++) {
         var highScoreEl = document.createElement("li");
         highScoreEl.className = "high-score";
@@ -250,7 +255,7 @@ var loadHighScore = function() {
 };
 
 // Display High Scores Function
-var displayHighScores = function() {
+var displayHighScores = function () {
     containerHighScoresEl.classList.remove("hide");
     containerHighScoresEl.classList.add("show");
     gameover = "true";
@@ -259,12 +264,12 @@ var displayHighScores = function() {
         containerEndEl.classList.remove("show");
         containerEndEl.classList.add("hide");
     };
-    
+
     if (containerStartEl.className = "show") {
         containerStartEl.classList.remove("show");
         containerStartEl.classList.add("hide");
     };
-            
+
     if (containerQuestionEl.className = "show") {
         containerQuestionEl.classList.remove("show");
         containerQuestionEl.classList.add("hide");
@@ -293,7 +298,7 @@ var clearScores = function () {
 };
 
 loadHighScore();
-        
+
 // Start Button
 btnStartEl.addEventListener("click", startGame);
 // Submit Initials Button
